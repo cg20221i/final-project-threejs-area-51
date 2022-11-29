@@ -1,0 +1,11 @@
+Model Information:
+* title:	IPhone 7 (Product Red)
+* source:	https://sketchfab.com/3d-models/iphone-7-product-red-f8d186434eae45b7bd673ab980dfd953
+* author:	Eternal Realm (https://sketchfab.com/EternalRealm)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "IPhone 7 (Product Red)" (https://sketchfab.com/3d-models/iphone-7-product-red-f8d186434eae45b7bd673ab980dfd953) by Eternal Realm (https://sketchfab.com/EternalRealm) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

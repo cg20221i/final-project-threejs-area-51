@@ -1,0 +1,11 @@
+Model Information:
+* title:	iPhone 5C | HQ
+* source:	https://sketchfab.com/3d-models/iphone-5c-hq-5290072182ff4d518ea10c074201c5d8
+* author:	4DS Artwork (https://sketchfab.com/4DS_Arts)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "iPhone 5C | HQ" (https://sketchfab.com/3d-models/iphone-5c-hq-5290072182ff4d518ea10c074201c5d8) by 4DS Artwork (https://sketchfab.com/4DS_Arts) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

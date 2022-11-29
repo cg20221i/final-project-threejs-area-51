@@ -1,0 +1,11 @@
+Model Information:
+* title:	iPhone 4
+* source:	https://sketchfab.com/3d-models/iphone-4-213202fe18424b798c2085859e8384ed
+* author:	Sexy Dog (https://sketchfab.com/sexydog)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "iPhone 4" (https://sketchfab.com/3d-models/iphone-4-213202fe18424b798c2085859e8384ed) by Sexy Dog (https://sketchfab.com/sexydog) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
