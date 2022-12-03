@@ -1,0 +1,24 @@
+{
+  "name": "final-project-threejs-area-51",
+  "version": "1.0.0",
+  "description": "final-project-threejs-area-51 created by GitHub Classroom",
+  "main": "three.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./src/css/input.css -o ./public/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cg20221i/final-project-threejs-area-51.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cg20221i/final-project-threejs-area-51/issues"
+  },
+  "homepage": "https://github.com/cg20221i/final-project-threejs-area-51#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
