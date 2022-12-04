@@ -30,7 +30,7 @@ const TRAY = document.getElementById('js-tray-slide');
 const canvas = document.querySelector('#webgl');
 
 var theModel;
-const MODEL_PATH = "/src/assets/Iphone-8/scene.gltf";
+const MODEL_PATH = "/final-project-threejs-area-51/src/assets/Iphone-8/scene.gltf";
 
 const BACKGROUND_COLOR = 0xf1f1f1;
 

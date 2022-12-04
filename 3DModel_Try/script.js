@@ -23,10 +23,41 @@ const optionsColors = [
   },   
   {
     color: 'e30022'
-  }  
-
+  },
+  {
+    color: 'e5e8e8'
+  },
+  {
+    color: 'e30022'
+  },
+  {
+    color: '000000'
+  }, 
+  {
+    color: '767676'
+  },  
 ]
 
+const parts = [
+  {
+    part : 'Cube.211_0'
+  },
+  {
+    part : 'Cube.211_1'
+  },
+  {
+    part : 'Cube.211_2'
+  },
+  {
+    part : 'Cube.211_3'
+  },
+  {
+    part : 'Cube.211_4',
+    try : 'try',
+  },
+]
+
+var activeOption = 'Cube.211_1';
 const TRAY = document.getElementById('js-tray-slide');
 
 const canvas = document.querySelector('#canvaz');
@@ -127,13 +158,13 @@ scene.add(dirLight);
 // scene.add(dirLight, dirHelper);
 
 //point light 1
-var pointLight = new THREE.PointLight(0xffffff, 1.5);
-pointLight.position.set(2, 50, 500);
-scene.add(pointLight);
+// var pointLight = new THREE.PointLight(0xffffff, 1.5);
+// pointLight.position.set(2, 50, 500);
+// scene.add(pointLight);
 
-const sphereSize = 10;
-const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-scene.add( pointLightHelper );
+// const sphereSize = 10;
+// const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+// scene.add( pointLightHelper );
 
 //point light 2
 var pointLight2 = new THREE.PointLight(0xc4c4c4,1.5);
@@ -167,12 +198,10 @@ var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.5 );
 // Add hemisphere light to scene   
 scene.add( hemiLight );
 
-
-
 //floor
 var floorGeometry = new THREE.PlaneGeometry(500,500,32);
 var floorMaterial = new THREE.MeshPhongMaterial({
-color:  '#52595D',
+color:  '#3cdf63',
 depthWrite: false,
 shininess: 0
 });
@@ -223,7 +252,6 @@ function resizeRendererToDisplaySize(renderer) {
 }
 
 //make div for color selections
-var parts = 'Cube.211_0';
 
 function buildColors(optionsColors) {
   for (let [i, color] of optionsColors.entries()) {
@@ -239,6 +267,39 @@ function buildColors(optionsColors) {
 
 buildColors(optionsColors);
 
+// Select Option
+const option1 = document.querySelector(".option1");
+option1.addEventListener('click', event =>{
+  activeOption = option1.dataset.id;
+  console.log(activeOption);
+});
+
+const option2 = document.querySelector(".option2");
+option2.addEventListener('click', event =>{
+  activeOption = option2.dataset.id;
+  console.log(activeOption);
+})
+
+const option3 = document.querySelector(".option3");
+option3.addEventListener('click', event =>{
+  activeOption = option3.dataset.id;
+  console.log(activeOption);
+})
+
+const option4 = document.querySelector(".option4");
+option4.addEventListener('click', event =>{
+  activeOption = option4.dataset.id;
+  console.log(activeOption);
+})
+
+const option5 = document.querySelector(".option5");
+option5.addEventListener('click', event =>{
+  activeOption = option5.dataset.id;
+  console.log(activeOption);
+})
+
+console.log(activeOption);
+
 //add eventlistener to div wirh .tray__swatch class
 const swatches = document.querySelectorAll(".tray__swatch");
 
@@ -249,6 +310,10 @@ for (const swatch of swatches) {
 function selectSwatch(e) {
   let chosenColor = optionsColors[parseInt(e.target.dataset.key)];
   let new_mtl;
+  console.log('Pressed');
+  // let key = e.target.dataset.key;
+  // console.log(key);
+  // console.log(chosenColor);
 
    new_mtl = new THREE.MeshPhongMaterial({
        color: parseInt('0x' + chosenColor.color),
@@ -256,7 +321,7 @@ function selectSwatch(e) {
        
      });
  
- setMaterial(theModel, parts, new_mtl);
+ setMaterial(theModel, activeOption, new_mtl);
 }
 
 function setMaterial(parent, parts, mtl) {
