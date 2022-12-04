@@ -30,7 +30,9 @@ const TRAY = document.getElementById('js-tray-slide');
 const canvas = document.querySelector('#webgl');
 
 var theModel;
-const MODEL_PATH = "/final-project-threejs-area-51/src/assets/Iphone-8/scene.gltf";
+
+// const MODEL_PATH1 = "/final-project-threejs-area-51/src/assets/Iphone-8/scene.gltf";
+
 
 const BACKGROUND_COLOR = 0xf1f1f1;
 
@@ -63,37 +65,90 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial( { color: 0xf1f1f1, shininess: 1
 
 const INITIAL_MAP = [
   {childID: "Object_12", mtl: INITIAL_MTL},
+  {childID: "Material3_2", mtl: INITIAL_MTL}
 ];
 
 
 // Init the object loader
-var loader = new THREE.GLTFLoader();
+// var loader = new THREE.GLTFLoader();
 
-  loader.load(MODEL_PATH, function(gltf) {
-  theModel = gltf.scene;
-  console.log(theModel);
-  // theModel.getObjectByName('Object_12').material.color.setHex(0x173A2F); 
+function loadModel(url) {
+  return new Promise(resolve => {
+    new THREE.GLTFLoader().load(url, resolve);
+  });
 
-  theModel.traverse((o) => {
+}
+
+let model1, model2;
+
+let p1 = loadModel("/final-project-threejs-area-51/src/assets/Iphone-8/scene.gltf").then(result => {  model1 = result.scene.children[0]; });
+let p2 = loadModel("/final-project-threejs-area-51/src/assets/Iphone-4S/scene.gltf").then(result => {  model2 = result.scene.children[0]; });
+
+//if all Promises resolved 
+Promise.all([p1,p2]).then(() => {
+
+  model1.traverse((o) => {
     if (o.isMesh) {
       o.castShadow = true;
       o.receiveShadow = true;
     }
   });
 
-  // Set the models initial scale   
-  theModel.scale.set(1,1,1);
-  // Offset the y position a bit
-  theModel.position.y = Math.PI;
+  model2.traverse((o) => {
+    if (o.isMesh) {
+      o.castShadow = true;
+      o.receiveShadow = true;
+    }
+  });
+  
+  //do something to the model
+  model1.position.set(0,Math.PI,0);
+  model2.position.set(12,3,0);
 
+
+
+  model1.scale.set(1,1,1);
+  model2.scale.set(0.04,0.04,0.04);
+  
   for (let object of INITIAL_MAP) {
-    initColor(theModel, object.childID, object.mtl);
+    initColor(model1, object.childID, object.mtl);
+    initColor(model2, object.childID, object.mtl);
   }
-  // Add the model to the scene
-  scene.add(theModel);
-}, undefined, function(error) {
-console.error(error)
+  //add model to the scene
+  scene.add(model1);
+  scene.add(model2);
+  
+  //continue the process
+  startRenderLoop();
 });
+
+
+
+//   loader.load(MODEL_PATH, function(gltf) {
+//   theModel = gltf.scene;
+//   console.log(theModel);
+//   // theModel.getObjectByName('Object_12').material.color.setHex(0x173A2F); 
+
+//   theModel.traverse((o) => {
+//     if (o.isMesh) {
+//       o.castShadow = true;
+//       o.receiveShadow = true;
+//     }
+//   });
+
+//   // Set the models initial scale   
+//   theModel.scale.set(1,1,1);
+//   // Offset the y position a bit
+//   theModel.position.y = Math.PI;
+
+//   for (let object of INITIAL_MAP) {
+//     initColor(theModel, object.childID, object.mtl);
+//   }
+//   // Add the model to the scene
+//   scene.add(theModel);
+// }, undefined, function(error) {
+// console.error(error)
+// });
 
 function initColor(parent, type, mtl) {
   parent.traverse(o => {
@@ -246,7 +301,8 @@ function selectSwatch(e) {
        
      });
  
- setMaterial(theModel, 'Object_12', new_mtl);
+ setMaterial(model1, 'Object_12', new_mtl);
+ setMaterial(model2, 'Material3_2', new_mtl);
 }
 
 function setMaterial(parent, parts, mtl) {
