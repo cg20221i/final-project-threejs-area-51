@@ -35,7 +35,10 @@ const optionsColors = [
   }, 
   {
     color: '767676'
-  },  
+  },
+  {
+    color: '505050'
+  },   
 ]
 
 const parts = [
@@ -122,7 +125,6 @@ loader.load(MODEL_PATH, function(gltf) {
       o.receiveShadow = true;
     }
   });
-
   // Set the models initial scale   
   theModel.scale.set(5,5,5);
   // Offset the y position a bit
