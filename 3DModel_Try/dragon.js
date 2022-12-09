@@ -40,32 +40,13 @@ const optionsColors = [
   },
 ];
 
-const parts = [
-  {
-    part: "Cube.211_0",
-  },
-  {
-    part: "Cube.211_1",
-  },
-  {
-    part: "Cube.211_2",
-  },
-  {
-    part: "Cube.211_3",
-  },
-  {
-    part: "Cube.211_4",
-    try: "try",
-  },
-];
-
-var activeOption = "Cube.211_1";
+var activeOption = "Cube.221_0";
 const TRAY = document.getElementById("js-tray-slide");
 
 const canvas = document.querySelector("#canvaz");
 
 var theModel;
-const MODEL_PATH = "assets/Chicken/Chicken.gltf";
+const MODEL_PATH = "assets/Dragon/Dragon_Evolved.gltf";
 // const MODEL_PATH = "/src/assets/Medieval.gltf";
 
 const BACKGROUND_COLOR = 0xf1f1f1;
@@ -100,39 +81,35 @@ camera.position.z = cameraFar;
 camera.position.x = 0;
 camera.position.y = 10;
 
-const canvaz = document.createElement("canvas");
-canvaz.width = 1;
-canvaz.height = 32;
+//SKY
+// const canvaz = document.createElement("canvas");
+// canvaz.width = 1;
+// canvaz.height = 32;
 
-const context = canvaz.getContext("2d");
-const gradient = context.createLinearGradient(0, 0, 0, 32);
-gradient.addColorStop(0.0, "#014a84");
-gradient.addColorStop(0.5, "#0561a0");
-gradient.addColorStop(1.0, "#437ab6");
-context.fillStyle = gradient;
-context.fillRect(0, 0, 32, 32);
+// const context = canvaz.getContext("2d");
+// const gradient = context.createLinearGradient(0, 0, 0, 32);
+// gradient.addColorStop(0.0, "#014a84");
+// gradient.addColorStop(0.5, "#0561a0");
+// gradient.addColorStop(1.0, "#437ab6");
+// context.fillStyle = gradient;
+// context.fillRect(0, 0, 32, 32);
 
-const sky = new THREE.Mesh(
-  new THREE.SphereGeometry(200),
-  new THREE.MeshBasicMaterial({
-    map: new THREE.CanvasTexture(canvaz),
-    side: THREE.BackSide,
-  })
-);
-scene.add(sky);
-
-const INITIAL_MTL = new THREE.MeshPhongMaterial({
-  color: 0xf1f1f1,
-  shininess: 10,
-});
+// const sky = new THREE.Mesh(
+//   new THREE.SphereGeometry(200),
+//   new THREE.MeshBasicMaterial({
+//     map: new THREE.CanvasTexture(canvaz),
+//     side: THREE.BackSide,
+//   })
+// );
+// scene.add(sky);
 
 const INITIAL_MAP = [
-  { childID: "Cube.211_0", mtl: INITIAL_MTL },
-  { childID: "Cube.211_1", mtl: INITIAL_MTL },
-  { childID: "Cube.211_2", mtl: INITIAL_MTL },
-  { childID: "Cube.211_3", mtl: INITIAL_MTL },
-  { childID: "Cube.211_4", mtl: INITIAL_MTL },
-];
+    { childID: "Cube.221_0"},
+    { childID: "Cube.221_1"},
+    { childID: "Cube.221_2"},
+    { childID: "Cube.221_3"},
+    { childID: "Cube.221_4"},
+  ];
 
 //test mtl+obj
 // const INITIAL_MTL2 = new THREE.MeshPhongMaterial( { color: 0xf1f1f1, shininess: 5 } );
@@ -189,16 +166,23 @@ const INITIAL_MAP = [
 // Init the object loader.
 var loader = new THREE.GLTFLoader();
 
-loader.load(
-  MODEL_PATH,
-  function (gltf) {
+let mixer;
+loader.load( MODEL_PATH, function (gltf) {
     theModel = gltf.scene;
     console.log(theModel);
-    //console.log(theModel.nameID);
+    console.log(theModel.getObjectByName('LowerArmR').position);
     for (let object of INITIAL_MAP) {
-      initColor(theModel, object.childID, object.mtl);
+       initColor(theModel, object.childID);
     }
-    // theModel.getObjectByName('Cube.211_0').material.color.setHex(options.Chicken_Main);
+
+    //try animation
+    mixer = new THREE.AnimationMixer(theModel);
+    const clips = gltf.animations;
+    const clip = THREE.AnimationClip.findByName(clips, 'Flying_Idle');
+    const action = mixer.clipAction(clip);
+    action.play();
+    console.log(gltf.animations);
+
 
     //Cast Shadows
     theModel.traverse((o) => {
@@ -208,7 +192,7 @@ loader.load(
       }
     });
     // Set the models initial scale
-    theModel.scale.set(5, 5, 5);
+    theModel.scale.set(3, 3, 3);
     // Offset the y position a bit
     theModel.position.y = Math.PI;
 
@@ -222,22 +206,23 @@ loader.load(
 );
 
 // Function - Add the textures to the models
-function initColor(parent, type, mtl) {
-  parent.traverse((o) => {
-    if (o.isMesh) {
-      if (o.name.includes(type)) {
-        o.material = mtl;
-        o.nameID = type; // Set a new property to identify this object
+function initColor(parent, type) {
+    parent.traverse((o) => {
+      if (o.isMesh) {
+        if (o.name.includes(type)) {
+            o.getObjectByName(type).material.color.setHex(0xffffff);
+         // Set a new property to identify this object
+        }
       }
-    }
-  });
+    });
 }
 // Add lights
 var ambLight = new THREE.AmbientLight(0x404040, 1);
 scene.add(ambLight);
 
 var dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(-8, 10, 20);
+dirLight.position.set(-10, 50, 10);
+
 dirLight.castShadow = true;
 scene.add(dirLight);
 
@@ -308,10 +293,16 @@ controls.dampingFactor = 0.1;
 controls.autoRotate = true; // Toggle this if you'd like the chair to automatically rotate
 controls.autoRotateSpeed = false; // 30
 
+const clock = new THREE.Clock();
+
 function animate() {
+    if(mixer){
+        mixer.update(clock.getDelta());
+    }
   controls.update();
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
+
 
   if (resizeRendererToDisplaySize(renderer)) {
     const canvas = renderer.domElement;
@@ -400,29 +391,27 @@ for (const swatch of swatches) {
 }
 
 function selectSwatch(e) {
-  let chosenColor = optionsColors[parseInt(e.target.dataset.key)];
-  let new_mtl;
-  console.log("Pressed");
-  // let key = e.target.dataset.key;
-  // console.log(key);
-  // console.log(chosenColor);
-
-  new_mtl = new THREE.MeshPhongMaterial({
-    color: parseInt("0x" + chosenColor.color),
-    shininess: chosenColor.shininess ? chosenColor.shininess : 5,
-  });
-
-  setMaterial(theModel, activeOption, new_mtl);
+    let chosenColor = optionsColors[parseInt(e.target.dataset.key)];
+    let new_mtl;
+    console.log("Pressed");
+    // let key = e.target.dataset.key;
+    // console.log(key);
+    // console.log(chosenColor);
+    let pickedColor = parseInt("0x" + chosenColor.color);  
+    setColor(theModel, activeOption, pickedColor);
 }
 
-function setMaterial(parent, parts, mtl) {
-  parent.traverse((model) => {
-    if (model.isMesh && model.nameID != null) {
-      if (model.nameID == parts) {
-        model.material = mtl;
+function setColor(parent, type,color) {
+    parent.traverse((o) => {
+      if (o.isMesh) {
+        if (o.name.includes(type)) {
+            o.getObjectByName(type).material.color.setHex(color);
+         // Set a new property to identify this object
+        }
       }
-    }
-  });
+    });
 }
+
+
 
 // theModel.getObjectByName('Cube.211_0').material.color.setHex(options.Chicken_Main);
