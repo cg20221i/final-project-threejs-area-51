@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>try</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="options absolute left-0">
+      <div class="option1 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700" data-id="Cube.092_0" data-no="0" style="cursor: pointer">
+        <img src="assets/Ninja/Ninja_main.png" alt="Ninja_Main"/>
+      </div>
+      <div class="option2 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700" data-id="Cube.092_1" data-no="1" style="cursor: pointer" >
+        <img src="assets/Ninja/Ninja_secondary.png" alt="Ninja_Secondary" />
+      </div>
+      <div class="option3 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700"  data-id="Cube.092_2" data-no="2" style="cursor: pointer">
+        <img class="w-20" src="assets/Ninja/Ninja_belt.png" alt="Ninja_Belt" />
+      </div>
+      <div class="option4 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700" data-id="Cube.092_3" data-no="3" style="cursor: pointer">
+        <img src="assets/Ninja/Ninja_gold.png" alt="Ninja_Gold" />
+      </div>
+      <div class="option5 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700" data-id="Cube.092_4" data-no="4" style="cursor: pointer">
+        <img src="assets/Ninja/Ninja_eye.png" alt="Ninja_Eye" />
+      </div>
+      <div class="option6 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700" data-id="Cube.092_5" data-no="5" style="cursor: pointer">
+        <img src="assets/Ninja/Ninja_eyemask.png" alt="Ninja_Eyemask" />
+      </div>
+      <div class="option7 bg-slate-400 mb-[2px] p-1 h-[80px] w-[80px] flex justify-items-center hover:bg-slate-700" data-id="Cube.092_6" data-no="6" style="cursor: pointer">
+        <img src="assets/Ninja/Ninja_weapon.png" alt="Ninja_Weapon" />
+      </div>
+    </div>
+
+    <canvas id="canvaz" class="w-full h-full block top-0 bottom-0"></canvas>
+
+    <div class="absolute bottom-0 w-full">
+      <div id="js-tray" class="w-full h-[50px] relative overflow-x-hidden">
+        <div id="js-tray-slide" class="absolute flex"></div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 right-0 mr-5">
+      <ul class="inline-flex items-center -space-x-px">
+        <li>
+          <a href="/3DModel_Try/dragon.html" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <span class="sr-only">Previous</span>
+            <svg aria-hidden="true" class="w-[21px] h-[21px]" fill="currentColor"iewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="/3DModel_Try/index.html" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+        </li>
+        <li>
+          <a href="/3DModel_Try/dragon.html" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+        </li>
+        <li>
+            <a href="/3DModel_Try/mushroom.html" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" >3</a>
+        </li>
+        <li>
+          <a href="/3DModel_Try/bunny.html" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" >4</a>
+        </li>
+        <li>
+          <a href="#"class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+        </li>
+        <li>
+          <a href="/3DModel_Try/bunny.html" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <span class="sr-only">Next</span>
+            <svg aria-hidden="true" class="w-[21px] h-[21px]" fill="currentColor"iewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- The main three.js file -->
+    <script src="https://unpkg.com/three@0.127.0/build/three.js"></script>
+    <!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/MTLLoader.js"></script>
+    <!-- This is a simple to use extension for three.js that activates all the rotating, dragging and zooming controls we need for both mouse and touch, there isn't a clear CDN for this that I can find -->
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+    <script src="ninja.js" type="module"></script>
+  </body>
+</html>
