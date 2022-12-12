@@ -181,7 +181,7 @@ const optionsColors = [
       //try animation
       mixer = new THREE.AnimationMixer(theModel);
       const clips = gltf.animations;
-      const clip = THREE.AnimationClip.findByName(clips, 'Run');
+      const clip = THREE.AnimationClip.findByName(clips, 'Jump_Idle');
       const action = mixer.clipAction(clip);
       action.play();
     //   console.log(gltf.animations);
@@ -276,9 +276,9 @@ const optionsColors = [
   //floor
   var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
   var floorMaterial = new THREE.MeshPhongMaterial({
-    color: "#3cdf63",
+    color: "#181485",
     // depthWrite: false,
-    shininess: 10,
+    shininess: 20,
   });
   
   var floor = new THREE.Mesh(floorGeometry, floorMaterial);

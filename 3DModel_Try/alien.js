@@ -177,7 +177,7 @@ const optionsColors = [
       //try animation
       mixer = new THREE.AnimationMixer(theModel);
       const clips = gltf.animations;
-      const clip = THREE.AnimationClip.findByName(clips, 'Walk');
+      const clip = THREE.AnimationClip.findByName(clips, 'Wave');
       const action = mixer.clipAction(clip);
       action.play();
     //   console.log(gltf.animations);
@@ -269,13 +269,13 @@ const optionsColors = [
   // Add hemisphere light to scene
   scene.add(hemiLight);
   
-  //floor
-  //   var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
-  //   var floorMaterial = new THREE.MeshPhongMaterial({
-  //     color: "#3cdf63",
-  //     // depthWrite: false,
-  //     shininess: 10,
-  //   });
+//   floor
+//     var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
+//     var floorMaterial = new THREE.MeshPhongMaterial({
+//       color: "#3cdf63",
+//       // depthWrite: false,
+//       shininess: 10,
+//     });
   
   //   var floor = new THREE.Mesh(floorGeometry, floorMaterial);
   //   floor.rotation.x = -0.5 * Math.PI;
