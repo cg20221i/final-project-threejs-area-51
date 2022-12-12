@@ -274,7 +274,7 @@ const optionsColors = [
   scene.add(hemiLight);
   
   //floor
-  var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
+  var floorGeometry = new THREE.BoxGeometry(500, 500, 9);
   var floorMaterial = new THREE.MeshPhongMaterial({
     color: "#181485",
     // depthWrite: false,

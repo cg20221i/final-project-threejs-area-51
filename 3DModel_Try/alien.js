@@ -108,6 +108,7 @@ const optionsColors = [
       { childID: "Cube.116_1"},
       { childID: "Cube.116_2"},
       { childID: "Cube.116_3"},
+      { childID: "Cube.116_4"},
     ];
   
   //test mtl+obj
@@ -374,7 +375,13 @@ const optionsColors = [
     console.log(activeOption);
   });
   
-  console.log(activeOption);
+
+  const option5 = document.querySelector(".option5");
+  option5.addEventListener("click", (event) => {
+    activeOption = option5.dataset.id;
+    console.log(activeOption);
+  });
+  
   
   //add eventlistener to div wirh .tray__swatch class
   const swatches = document.querySelectorAll(".tray__swatch");

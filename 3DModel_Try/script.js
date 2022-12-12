@@ -320,7 +320,7 @@ scene.add(hemiLight);
 //floor
 var grass = new THREE.TextureLoader().load('texture/SEAMLESS GRASS TEXTURE.jpg');
 var soil = new THREE.TextureLoader().load('texture/Dirty One.jpg');
-var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
+var floorGeometry = new THREE.BoxGeometry(500, 500, 19);
 var floorMaterial = new THREE.MeshPhongMaterial({
   color: "#3cdf63",
   // depthWrite: false,
