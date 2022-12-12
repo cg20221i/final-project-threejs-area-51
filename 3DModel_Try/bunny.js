@@ -220,7 +220,7 @@ const optionsColors = [
   scene.add(ambLight);
   
   var dirLight = new THREE.DirectionalLight(0xffffff, 1);
-  dirLight.position.set(-10, 50, 10);
+  dirLight.position.set(-10, 70, 10);
   
   dirLight.castShadow = true;
   scene.add(dirLight);
@@ -270,18 +270,18 @@ const optionsColors = [
   scene.add(hemiLight);
   
   //floor
-//   var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
-//   var floorMaterial = new THREE.MeshPhongMaterial({
-//     color: "#3cdf63",
-//     // depthWrite: false,
-//     shininess: 10,
-//   });
+  var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
+  var floorMaterial = new THREE.MeshPhongMaterial({
+    color: "#3cdf63",
+    // depthWrite: false,
+    shininess: 10,
+  });
   
-//   var floor = new THREE.Mesh(floorGeometry, floorMaterial);
-//   floor.rotation.x = -0.5 * Math.PI;
-//   floor.receiveShadow = true;
-//   floor.position.set(0, 0, 0);
-//   scene.add(floor);
+  var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+  floor.rotation.x = -0.5 * Math.PI;
+  floor.receiveShadow = true;
+  floor.position.set(0, 0, 0);
+  scene.add(floor);
   
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.maxPolarAngle = Math.PI;

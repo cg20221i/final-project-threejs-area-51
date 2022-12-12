@@ -186,6 +186,37 @@ const INITIAL_MAP = [
 //     }
 // )
 
+//trying tree
+// var loader1 = new THREE.GLTFLoader();
+// var theModel2;
+
+// loader1.load(
+//   "Nature/BirchTree_4.gltf",
+//   function (gltf) {
+//     theModel2 = gltf.scene;
+//     theModel2.scale.set(10, 10, 10);
+//     theModel2.position.set(-50, 0, -5);
+//     console.log(theModel2);
+//     theModel2.getObjectByName('Cube.008_0').material.color.setHex(0x964b00);
+//     theModel2.getObjectByName('Cube.008_1').material.color.setHex(0x3D550C);
+
+
+//     theModel2.traverse((o) => {
+//       if (o.isMesh) {
+//         o.castShadow = true;
+//         o.receiveShadow = true;
+//       }
+//     });
+
+//     scene.add(theModel2);
+    
+//   },
+//   undefined,
+//   function (error) {
+//     console.error(error);
+//   }
+// );
+
 // Init the object loader.
 var loader = new THREE.GLTFLoader();
 
@@ -207,10 +238,11 @@ loader.load(
         o.receiveShadow = true;
       }
     });
+    theModel.position.set(0,10,0);
     // Set the models initial scale
     theModel.scale.set(5, 5, 5);
     // Offset the y position a bit
-    theModel.position.y = Math.PI;
+    // theModel.position.y = Math.PI;
 
     // Add the model to the scene
     scene.add(theModel);
@@ -236,8 +268,8 @@ function initColor(parent, type, mtl) {
 var ambLight = new THREE.AmbientLight(0x404040, 1);
 scene.add(ambLight);
 
-var dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(-8, 10, 20);
+var dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+dirLight.position.set(-20, 100, 7);
 dirLight.castShadow = true;
 scene.add(dirLight);
 
@@ -264,7 +296,7 @@ scene.add(pointLightHelper2);
 
 //point light 3
 var pointLight3 = new THREE.PointLight(0xc4c4c4, 1.5);
-pointLight3.position.set(0, 100, -500);
+pointLight3.position.set(0, 100, -700);
 scene.add(pointLight3);
 
 const sphereSize3 = 1;
@@ -281,16 +313,19 @@ const pointLightHelper4 = new THREE.PointLightHelper(pointLight4, sphereSize4);
 scene.add(pointLightHelper4);
 
 var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.5);
-hemiLight.position.set(0, 50, 0);
+hemiLight.position.set(0, 100, 0);
 // Add hemisphere light to scene
 scene.add(hemiLight);
 
 //floor
+var grass = new THREE.TextureLoader().load('texture/SEAMLESS GRASS TEXTURE.jpg');
+var soil = new THREE.TextureLoader().load('texture/Dirty One.jpg');
 var floorGeometry = new THREE.BoxGeometry(500, 500, 5);
 var floorMaterial = new THREE.MeshPhongMaterial({
   color: "#3cdf63",
   // depthWrite: false,
-  shininess: 10,
+  shininess: 1,
+  // map: grass
 });
 
 var floor = new THREE.Mesh(floorGeometry, floorMaterial);
